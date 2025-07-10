@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Key Distribution - BB84 Simulator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        h1 {
+            text-align: center;
+            color: #222;
+            font-size: 26px;
+            margin-bottom: 0px;
+        }
+        .sub {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 40px;
+            color: #444;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quantum Key Encryption - BB84 Simulation 🔐</h1>
+        <div class="sub">Project by Atharva Dubey</div><form method="POST">
+        <label for="message">Enter Message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Encrypt using BB84 Key</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <strong>Error Rate:</strong> {{ result.error_rate }}% <br>
+            <strong>Key Length:</strong> {{ result.key_length }} <br>
+            <strong>Status:</strong> {% if result.eavesdrop_detected %}<span style="color:red;">Eavesdropping Detected! 🔴</span>{% else %}<span style="color:green;">Secure Channel Established ✅</span>{% endif %} <br>
+            <strong>Decrypted Message:</strong> {{ result.decrypted_message }} <br>
+            {% if result.eavesdrop_detected and result.mismatch_log %}
+                <br><strong>Mismatched Photons (Index Positions):</strong><br>
+                {{ result.mismatch_log }}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="note">
+        <strong>Note:</strong> This simulator uses real-time photon behavior to simulate the BB84 protocol. If an eavesdropper tries to intercept, the quantum states change and result in a higher error rate. When the error exceeds 20%, the system flags potential eavesdropping and may display a corrupted or compromised message. For error rates below the threshold, the original message is securely decrypted.
+    </div>
+
+    <div class="footer">
+        🚀 India's Q-Insight Protocol — More updates coming soon. <br>
+        <a href="https://www.linkedin.com/in/atharva-dubey-76b566331" target="_blank">Connect on LinkedIn</a>
+        <br><br>
+        🧠 Project by Atharva Dubey<br>
+        B.Tech, SGSITS Indore & B.S. Data Science, IIT Madras
+    </div>
+</div>
+
+</body>
+</html>
